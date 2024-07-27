@@ -1,0 +1,13 @@
+.env
+
+
+
+.DS_Store
+dist/
+
+# Ignore log files
+*.log
+
+
+# Ignore node_modules
+node_modules/
