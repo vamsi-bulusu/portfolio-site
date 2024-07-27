@@ -585,3 +585,33 @@
 	};
 
 })(jQuery);
+
+
+async function handleFormSubmit(event) {
+	event.preventDefault(); // Prevent the default form submission behavior
+  
+	const form = event.target;
+	const formData = new FormData(form);
+  
+	try {
+	  const response = await fetch(form.action, {
+		method: form.method,
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(Object.fromEntries(formData)),
+	  });
+  
+	  if (!response.ok) {
+		// Handle non-200 responses
+		const errorResult = await response.json();
+		throw new Error(errorResult.message || 'Failed to send email');
+	  }
+  
+	  const result = await response.json();
+	  alert(result.message); // Display alert based on backend response
+	  form.reset(); // Optionally reset the form
+	} catch (error) {
+	  console.error('Error:', error); // Log the error for debugging
+	  alert(`An error occurred: ${error.message}`); // Provide detailed error message
+	}
+  }
+  
