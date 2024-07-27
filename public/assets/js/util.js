@@ -592,7 +592,7 @@ async function handleFormSubmit(event) {
   
 	const form = event.target;
 	const formData = new FormData(form);
-  
+	
 	try {
 	  const response = await fetch(form.action, {
 		method: form.method,
