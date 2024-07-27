@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mailjet = require('node-mailjet');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,9 +13,11 @@ const mailjetClient = mailjet.apiConnect(process.env.API_KEY, process.env.SECRET
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'public')));
 
-
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 app.post('/send-email', (req, res) => {
     const { name, subject, email, message } = req.body;
