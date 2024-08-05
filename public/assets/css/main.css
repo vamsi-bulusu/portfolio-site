@@ -1620,6 +1620,15 @@ input, select, textarea {
 		margin-bottom: 0;
 	}
 
+	.experience-list {
+		text-align: justify;
+	}
+	.experience-list::after {
+		content: '';
+		display: inline-block;
+		width: 100%;
+	}
+
 /* Image */
 
 	.image {
@@ -1744,6 +1753,7 @@ input, select, textarea {
 			.button.alt:active {
 				background-color: #3f3f3f;
 			}
+
 
 /* List */
 
